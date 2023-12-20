@@ -18,8 +18,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   final TextEditingController _email = TextEditingController();
   final TextEditingController _nama = TextEditingController();
-  final TextEditingController _username = TextEditingController();
+  final TextEditingController _tgllahir = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final TextEditingController _alamat = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,24 +80,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
               ),
               const SizedBox(height: 10.0),
               TextFormField(
-                controller: _username,
-                validator: (value) {
-                  if (value?.isEmpty ?? true) {
-                    return 'Isi username';
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.grey[200],
-                  labelText: 'Nama Pengguna',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 10.0),
-              TextFormField(
                 controller: _email,
                 validator: (value) {
                   if (value?.isEmpty ?? true) {
@@ -108,6 +91,42 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   filled: true,
                   fillColor: Colors.grey[200],
                   labelText: 'Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              TextFormField(
+                controller: _tgllahir,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return 'Isi Tanggal Lahir';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'Tanggal Lahir (dd - MM - yyyy)',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              TextFormField(
+                controller: _alamat,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return 'Isi Alamat';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'Alamat',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
@@ -208,9 +227,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
       await _firestore.collection('Pengguna').doc(uid).set({
         'nama': _nama.text,
-        'username': _username.text,
+        'tgl lahir': _tgllahir.text,
         'email': _email.text,
         'kata sandi': _password.text,
+        'alamat': _alamat.text,
       });
 
       navToLoginPage(context);

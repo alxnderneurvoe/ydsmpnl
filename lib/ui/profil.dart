@@ -123,7 +123,6 @@ class _ProfilPageState extends State<ProfilPage> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           const Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               SizedBox(width: 110, child: Text('Nama')),
                               SizedBox(width: 110, child: Text('Alamat')),
@@ -132,11 +131,16 @@ class _ProfilPageState extends State<ProfilPage> {
                             ],
                           ),
                           Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Text(': ${_userData['nama']}'),
-                              Text(': ${_userData['alamat']}'),
-                              Text(': ${_userData['tgllahir']}'),
+                              SizedBox(
+                                  width: 250,
+                                  child: Text(': ${_userData['nama']}')),
+                              SizedBox(
+                                  width: 250,
+                                  child: Text(': ${_userData['alamat']}')),
+                              SizedBox(
+                                  width: 250,
+                                  child: Text(': ${_userData['tgl lahir']}')),
                             ],
                           ),
                         ],
@@ -198,8 +202,8 @@ class _ProfilPageState extends State<ProfilPage> {
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFFFD600),
-                    fixedSize: Size(130, 30)),
-                child: Text(
+                    fixedSize: const Size(130, 30)),
+                child: const Text(
                   'Logout',
                   style: TextStyle(
                       color: Colors.black,
@@ -217,7 +221,7 @@ class _ProfilPageState extends State<ProfilPage> {
       _user = _auth.currentUser!;
 
       DocumentSnapshot<Map<String, dynamic>> userData =
-          await _firestore.collection('User').doc(_user.uid).get();
+          await _firestore.collection('Pengguna').doc(_user.uid).get();
 
       setState(() {
         _userData = userData.data() ?? {};

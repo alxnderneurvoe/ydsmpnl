@@ -29,17 +29,11 @@ class _HistoryPageState extends State<HistoryPage> {
     return Scaffold(
       body: Column(
         children: [
-          const SizedBox(height: 10),
           Container(
             width: double.infinity,
             height: 281,
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
-            decoration: ShapeDecoration(
-              color: const Color(0xFFFFD600),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-            ),
+            color: const Color(0xFFFFD600),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,

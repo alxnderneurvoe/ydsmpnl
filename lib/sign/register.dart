@@ -32,162 +32,165 @@ class _RegistrationPageState extends State<RegistrationPage> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(bottom: 8.0),
-                  child: Image.asset(
-                    'assets/pnl.png',
-                    height: 80,
-                    width: 80,
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(bottom: 8.0),
+                    child: Image.asset(
+                      'assets/pnl.png',
+                      height: 80,
+                      width: 80,
+                    ),
+                  ),
+                ],
+              ),
+              const Text(
+                'Pendaftaran Akun',
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              TextFormField(
+                controller: _nama,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return 'Isi nama lengkap';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'Nama Lengkap',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-              ],
-            ),
-            const Text(
-              'Pendaftaran Akun',
-              style: TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
               ),
-            ),
-            const SizedBox(height: 20.0),
-            TextFormField(
-              controller: _nama,
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Isi nama lengkap';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[200],
-                labelText: 'Nama Lengkap',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+              const SizedBox(height: 10.0),
+              TextFormField(
+                controller: _username,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return 'Isi username';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'Nama Pengguna',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10.0),
-            TextFormField(
-              controller: _username,
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Isi username';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[200],
-                labelText: 'Nama Pengguna',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+              const SizedBox(height: 10.0),
+              TextFormField(
+                controller: _email,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return 'Isi Email';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'Email',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10.0),
-            TextFormField(
-              controller: _email,
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Isi Email';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[200],
-                labelText: 'Email',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+              const SizedBox(height: 10.0),
+              TextFormField(
+                controller: _password,
+                obscureText: true,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return 'Isi Kata Sandi';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'Kata Sandi',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10.0),
-            TextFormField(
-              controller: _password,
-              obscureText: true,
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Isi Kata Sandi';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[200],
-                labelText: 'Kata Sandi',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+              const SizedBox(height: 10.0),
+              TextFormField(
+                obscureText: true,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return 'Isi Ulang Kata Sandi';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'Konfirmasi Kata Sandi',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 10.0),
-            TextFormField(
-              obscureText: true,
-              validator: (value) {
-                if (value?.isEmpty ?? true) {
-                  return 'Isi Ulang Kata Sandi';
-                }
-                return null;
-              },
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.grey[200],
-                labelText: 'Konfirmasi Kata Sandi',
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
+              const SizedBox(height: 20.0),
+              ElevatedButton(
+                onPressed: () {
+                  _register();
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFFFFD600),
                 ),
-              ),
-            ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                _register();
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFFD600),
-              ),
-              child: const Text(
-                'Daftar',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
-              ),
-            ),
-            const SizedBox(height: 10.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text(
-                  'Sudah memiliki akun?',
+                child: const Text(
+                  'Daftar',
                   style: TextStyle(
                     color: Colors.black,
                   ),
                 ),
-                const SizedBox(width: 5.0),
-                TextButton(
-                  onPressed: () {
-                    navToLoginPage(context);
-                  },
-                  child: const Text(
-                    'Masuk',
+              ),
+              const SizedBox(height: 10.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    'Sudah memiliki akun?',
                     style: TextStyle(
-                      color: Colors.blue,
+                      color: Colors.black,
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
+                  const SizedBox(width: 5.0),
+                  TextButton(
+                    onPressed: () {
+                      navToLoginPage(context);
+                    },
+                    child: const Text(
+                      'Masuk',
+                      style: TextStyle(
+                        color: Colors.blue,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

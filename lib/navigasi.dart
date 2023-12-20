@@ -87,4 +87,3 @@ void navToSyaratPage(BuildContext context) {
     MaterialPageRoute(builder: (context) => const SyaratPendaftaranContent()),
   );
 }
-

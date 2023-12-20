@@ -35,14 +35,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60.0),
-        child: AppBar(
-          automaticallyImplyLeading: false,
-          title: const Text('Pendaftaran Yudisium 2023'),
-          backgroundColor: const Color(0xFFFFD600),
-        ),
-      ),
       body: PageView(
         controller: _pageController,
         children: <Widget>[

@@ -1,10 +1,8 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
+import 'package:yudisium_pnl/navigasi.dart';
 
-import 'subinformasi/DokumenPendukung.dart';
-import 'subinformasi/manualbook.dart';
-import 'subinformasi/syaratdaftar.dart';
 // import './form_pendaftaran.dart';
 
 class InformasiPage extends StatefulWidget {
@@ -21,31 +19,27 @@ class _InformasiPageState extends State<InformasiPage> {
       body: SingleChildScrollView(
         physics: const AlwaysScrollableScrollPhysics(),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(height: 10),
             Container(
               width: double.infinity,
               height: 281,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 13),
-              decoration: ShapeDecoration(
-                color: const Color(0xFFFFD600),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(0),
-                ),
-              ),
+              color: const Color(0xFFFFD600),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  Container(
                     width: 177,
                     height: 172,
                     child: Center(
                       child: Image.asset(
-                        'assets/pnl.png',
-                        width: 177,
-                        height: 172,
+                        'assets/pnl.png', // Gantilah dengan path gambar logo PNL yang sesuai
+                        width:
+                            177, // Sesuaikan dengan lebar logo yang diinginkan
+                        height:
+                            172, // Sesuaikan dengan tinggi logo yang diinginkan
                       ),
                     ),
                   ),
@@ -55,9 +49,9 @@ class _InformasiPageState extends State<InformasiPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Informasi Pendaftaran Yudisium',
+                        'Infomasi',
                         style: TextStyle(
-                          fontSize: 30.0,
+                          fontSize: 32.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
@@ -67,13 +61,102 @@ class _InformasiPageState extends State<InformasiPage> {
                 ],
               ),
             ),
-            const SizedBox(height: 16),
-            buildInfoButton('Manual Book', const ManualBookContent()),
-            buildInfoButton(
-                'Dokumen Pendukung', const DokumenPendukungContent()),
-            buildInfoButton(
-                'Syarat Pendaftaran', const SyaratPendaftaranContent()),
-            const SizedBox(height: 400),
+            const SizedBox(height: 20),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              height: 400,
+              child: Column(
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      navToManualBook(context);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(10),
+                      color: const Color(0xFFEDEDD9),
+                      child: const Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Manual Book',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(Icons.arrow_right),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      navToDocPendukung(context);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(10),
+                      color: const Color(0xFFEDEDD9),
+                      child: const Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Dokumen Pendukung',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(Icons.arrow_right),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      navToSyaratPage(context);
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(10),
+                      color: const Color(0xFFEDEDD9),
+                      child: const Column(
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Syarat Pendaftaran Yudisium',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Icon(Icons.arrow_right),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
       ),

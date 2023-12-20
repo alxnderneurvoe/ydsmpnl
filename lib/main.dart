@@ -17,7 +17,15 @@ Future main() async {
           appId: "1:753934366540:web:e35e366a3718df480181e9"),
     );
   } else {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: const FirebaseOptions(
+          apiKey: "AIzaSyBcdfoiJwfhOuspqcJvV3tzZdiBVia_1I8",
+          authDomain: "yudisium-pnl.firebaseapp.com",
+          projectId: "yudisium-pnl",
+          storageBucket: "yudisium-pnl.appspot.com",
+          messagingSenderId: "753934366540",
+          appId: "1:753934366540:android:5aadb427234b62550181e9"),
+    );
   }
   WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());

@@ -77,7 +77,7 @@ class _ProfilPageState extends State<ProfilPage> {
             const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.symmetric(
-                horizontal: 10,
+                horizontal: 15,
                 vertical: 13,
               ),
               width: double.infinity,
@@ -87,103 +87,75 @@ class _ProfilPageState extends State<ProfilPage> {
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
-                    width: 90,
-                    height: 92,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: const BoxDecoration(),
-                    child: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: Image.asset(
-                            'assets/p.png',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ],
+                  const Text(
+                    'Informasi Pribadi',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(width: 20),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  const Divider(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Informasi Pribadi',
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
+                      const Column(
+                        children: [
+                          SizedBox(width: 110, child: Text('Nama')),
+                          SizedBox(width: 110, child: Text('Alamat')),
+                          SizedBox(width: 110, child: Text('Tanggal Lahir')),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          SizedBox(
+                              width: 250,
+                              child: Text(': ${_userData['nama']}')),
+                          SizedBox(
+                              width: 250,
+                              child: Text(': ${_userData['alamat']}')),
+                          SizedBox(
+                              width: 250,
+                              child: Text(': ${_userData['tgllahir']}')),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8.0),
+                  const Divider(),
+                  const SizedBox(height: 8.0),
+                  Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8.0),
+                        child: Icon(
+                          Icons.email,
+                          color: Colors.black,
                         ),
                       ),
-                      const Divider(),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          const Column(
-                            children: [
-                              SizedBox(width: 110, child: Text('Nama')),
-                              SizedBox(width: 110, child: Text('Alamat')),
-                              SizedBox(
-                                  width: 110, child: Text('Tanggal Lahir')),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              SizedBox(
-                                  width: 250,
-                                  child: Text(': ${_userData['nama']}')),
-                              SizedBox(
-                                  width: 250,
-                                  child: Text(': ${_userData['alamat']}')),
-                              SizedBox(
-                                  width: 250,
-                                  child: Text(': ${_userData['tgllahir']}')),
-                            ],
-                          ),
+                          const SizedBox(width: 60, child: Text('Email')),
+                          Text(': ${_user.email}'),
                         ],
                       ),
-                      const SizedBox(height: 8.0),
-                      Container(
-                        width: 200,
-                        height: 2,
-                        color: Colors.black54,
-                      ),
-                      const SizedBox(height: 8.0),
-                      Row(
-                        children: [
-                          const Padding(
-                            padding: EdgeInsets.only(right: 8.0),
-                            child: Icon(
-                              Icons.email,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              const SizedBox(width: 60, child: Text('Email')),
-                              Text(': ${_user.email}'),
-                            ],
-                          ),
-                        ],
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(right: 8.0),
+                        child: Icon(
+                          Icons.location_on,
+                          color: Colors.black,
+                        ),
                       ),
                       Row(
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.only(right: 8.0),
-                            child: Icon(
-                              Icons.location_on,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Row(
-                            children: [
-                              const SizedBox(width: 60, child: Text('Alamat')),
-                              Text(': ${_userData['alamat']}'),
-                            ],
-                          ),
+                          const SizedBox(width: 60, child: Text('Alamat')),
+                          Text(': ${_userData['alamat']}'),
                         ],
                       ),
                     ],

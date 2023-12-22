@@ -1,5 +1,7 @@
-// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: library_private_types_in_public_api, avoid_print
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:yudisium_pnl/navigasi.dart';
 
@@ -17,6 +19,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final int _selectedIndex = 0;
   final PageController _pageController = PageController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
+  late User _user;
+  late Map<String, dynamic> _userData;
+
+  @override
+  void initState() {
+    super.initState();
+    _getUserData();
+  }
 
   void _onItemTapped(int index) {
     _pageController.animateToPage(
@@ -42,6 +55,26 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
+                const Text(
+                  'Selamat Datang',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 25,
+                    decoration: TextDecoration.underline,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  _userData['nama'],
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
+                Text(
+                  _userData['nim'],
+                ),
+                const SizedBox(height: 100),
                 // logo pnl
                 Image.asset(
                   'assets/pnl.png',
@@ -121,5 +154,20 @@ class _HomePageState extends State<HomePage> {
         onTap: _onItemTapped,
       ),
     );
+  }
+
+  Future<void> _getUserData() async {
+    try {
+      _user = _auth.currentUser!;
+
+      DocumentSnapshot<Map<String, dynamic>> userData =
+          await _firestore.collection('Pengguna').doc(_user.uid).get();
+
+      setState(() {
+        _userData = userData.data() ?? {};
+      });
+    } catch (e) {
+      print('Failed to get user data: $e');
+    }
   }
 }

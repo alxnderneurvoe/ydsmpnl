@@ -18,9 +18,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   final TextEditingController _email = TextEditingController();
   final TextEditingController _nama = TextEditingController();
+  final TextEditingController _nim = TextEditingController();
   final TextEditingController _tgllahir = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _alamat = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +75,24 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   filled: true,
                   fillColor: Colors.grey[200],
                   labelText: 'Nama Lengkap',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20.0),
+              TextFormField(
+                controller: _nim,
+                validator: (value) {
+                  if (value?.isEmpty ?? true) {
+                    return 'Isi NIM';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  labelText: 'NIM',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
@@ -197,7 +217,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   const SizedBox(width: 5.0),
                   TextButton(
                     onPressed: () {
-                      navToLoginPage(context);
+                      Navigator.of(context)
+                          .pushNamedAndRemoveUntil('/', (Route route) => false);
                     },
                     child: const Text(
                       'Masuk',
@@ -231,6 +252,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
         'email': _email.text,
         'kata sandi': _password.text,
         'alamat': _alamat.text,
+        'nim': _nim.text,
       });
 
       navToLoginPage(context);

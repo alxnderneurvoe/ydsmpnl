@@ -1,8 +1,9 @@
-// ignore_for_file: library_private_types_in_public_api, avoid_print
+// ignore_for_file: library_private_types_in_public_api, avoid_print, unrelated_type_equality_checks
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class HistoryPage extends StatefulWidget {
   const HistoryPage({super.key});
@@ -64,6 +65,7 @@ class _HistoryPageState extends State<HistoryPage> {
           ),
           const SizedBox(height: 20),
           Container(
+            width: 400,
             padding: const EdgeInsets.symmetric(
               horizontal: 20,
               vertical: 13,
@@ -74,40 +76,110 @@ class _HistoryPageState extends State<HistoryPage> {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Column(
               children: [
-                Container(
-                  width: 80.0,
-                  height: 80.0,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
+                Text(
+                  '${_userData['Gelombang']}',
+                  style: const TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.center,
                 ),
-                const SizedBox(width: 20),
-                Column(
+                const Divider(),
+                const SizedBox(height: 8.0),
+                Row(
+                  children: [
+                    const SizedBox(width: 110, child: Text('Tanggal Daftar')),
+                    _userData['tglinput'] != null
+                        ? Text(DateFormat(': EEEE, dd - MM - yyyy')
+                            .format(_userData['tglinput'].toDate()))
+                        : const Text('No date available'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 110, child: Text('Jam Daftar')),
+                    _userData['tglinput'] != null
+                        ? Text(DateFormat(': HH:mm:ss')
+                            .format(_userData['tglinput'].toDate()))
+                        : const Text('No date available'),
+                  ],
+                ),
+                const SizedBox(height: 8.0),
+                const Divider(),
+                const SizedBox(height: 8.0),
+                Container(
+                    child: _userData != true
+                        ? const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Status :'),
+                              Text(
+                                ' SUDAH TERDAFTAR',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          )
+                        : const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('Status :'),
+                              Text(
+                                ' BELUM TERDAFTAR',
+                                style: TextStyle(fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          )),
+                const SizedBox(height: 8.0),
+              ],
+            ),
+          ),
+          const SizedBox(height: 20),
+          Container(
+            width: 400,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 13,
+            ),
+            decoration: ShapeDecoration(
+              color: const Color(0xFFEDEDD9),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: Column(
+              children: [
+                const Text('DATA PENDAFTARAN',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    )),
+                const Divider(),
+                const SizedBox(height: 8),
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      '${_userData['nama']}',
-                      style: const TextStyle(
-                        fontSize: 24.0,
-                        fontWeight: FontWeight.bold,
+                    const SizedBox(width: 110, child: Text('Judul TGA')),
+                    const Text(': '),
+                    Expanded(
+                      child: Text(
+                        '${_userData['Judul TGA']}',
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-                    const Divider(),
-                    const Text('Tanggal Pendaftaran : Rabu, 12 Oktober 2023'),
-                    const Text('Jam Pendaftaran : 13:05:00'),
-                    const SizedBox(height: 8.0),
-                    Container(
-                      width: 200,
-                      height: 2,
-                      color: Colors.black54,
-                    ),
-                    const Text('Status : SUDAH TERDAFTAR'),
-                    const SizedBox(height: 8.0),
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 110, child: Text('Dospem 1')),
+                    Text(': ${_userData['Dosen Pembimbing 1']}')
+                  ],
+                ),
+                Row(
+                  children: [
+                    const SizedBox(width: 110, child: Text('Dospem 2')),
+                    Text(': ${_userData['Dosen Pembimbing 2']}')
                   ],
                 ),
               ],
@@ -122,8 +194,12 @@ class _HistoryPageState extends State<HistoryPage> {
     try {
       _user = _auth.currentUser!;
 
-      DocumentSnapshot<Map<String, dynamic>> userData =
-          await _firestore.collection('User').doc(_user.uid).get();
+      DocumentSnapshot<Map<String, dynamic>> userData = await _firestore
+          .collection('Pengguna')
+          .doc(_user.uid)
+          .collection('Pendaftaran')
+          .doc('Data Input')
+          .get();
 
       setState(() {
         _userData = userData.data() ?? {};

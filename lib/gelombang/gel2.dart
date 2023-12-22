@@ -195,7 +195,7 @@ class _YudisGelDuaState extends State<YudisGelDua> {
       await _firestore
           .collection('Pengguna')
           .doc(_user.uid)
-          .collection('Gelombang 2')
+          .collection('Pendaftaran')
           .doc('Data Input')
           .set(
         {
@@ -205,6 +205,7 @@ class _YudisGelDuaState extends State<YudisGelDua> {
           'IPK': ipk.text,
           'Motto': motto.text,
           'Gelombang': 'Gelombang 2',
+          'tglinput': DateTime.now(),
         },
       );
     } catch (e) {}

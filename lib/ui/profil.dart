@@ -140,7 +140,7 @@ class _ProfilPageState extends State<ProfilPage> {
                                   child: Text(': ${_userData['alamat']}')),
                               SizedBox(
                                   width: 250,
-                                  child: Text(': ${_userData['tgl lahir']}')),
+                                  child: Text(': ${_userData['tgllahir']}')),
                             ],
                           ),
                         ],

@@ -194,7 +194,7 @@ class _DaftarYudisDuaState extends State<DaftarYudisDua> {
               await _firestore
                   .collection('Pengguna')
                   .doc(_user.uid)
-                  .collection('Gelombang 2')
+                  .collection('Pendaftaran')
                   .doc('Data File')
                   .set(
                 {
